@@ -5,7 +5,7 @@ import { jobsReducer } from './jobsReducer';
 
 const rootReducer = combineReducers({
   testReducer,
-  jobsReducer
+  jobs: jobsReducer
 })
 
 export default rootReducer
