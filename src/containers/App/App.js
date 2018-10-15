@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import { connect } from 'react-redux';
+import { addJobs } from '../../actions';
 
 class App extends Component {
   constructor() {
@@ -14,9 +16,7 @@ class App extends Component {
     fetch(process.env.REACT_APP_DATABASE_API_URL + '/api/v1/jobs')
       .then(response => response.json())
       .then(jobs => {
-        this.setState({
-          jobs
-        })
+        this.props.addJobsToStore(jobs);
       })
       .catch(error => console.log(error))
   }
@@ -32,4 +32,8 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  addJobsToStore: jobs => dispatch(addJobs(jobs))
+})
+
+export default connect(null, mapDispatchToProps)(App);
