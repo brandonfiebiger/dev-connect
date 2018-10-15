@@ -20,6 +20,11 @@ class App extends Component {
         this.props.addJobsToStore(jobs);
       })
       .catch(error => console.log(error))
+    fetch(process.env.REACT_APP_DATABASE_API_URL + '/api/v1/job-types')
+      .then(response => response.json())
+      .then(job_types => {
+        console.log(job_types);
+      })
   }
 
   render() {
