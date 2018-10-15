@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
 import { addJobs } from '../../actions';
+import JobsContainer from '../JobsContainer/JobsContainer';
 
 class App extends Component {
   constructor() {
@@ -26,6 +27,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1>DevConnect!!</h1>
+          <JobsContainer />
         </header>
       </div>
     );
