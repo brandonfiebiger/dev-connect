@@ -1,0 +1,10 @@
+.employer-form {
+  display: flex;
+  flex-direction: column; }
+
+.employer-input,
+.add-job-button {
+  margin-top: 0.75rem; }
+
+.description {
+  height: 75px; }
