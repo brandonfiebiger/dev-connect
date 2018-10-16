@@ -11,9 +11,9 @@ export const JobCard = (props) => {
   // }
   // jobTypeTitle();
 
-  console.log(props.jobType)
   return (
     <li>
+      {props.description}
     </li>
   )
 }

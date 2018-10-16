@@ -23,7 +23,7 @@ class App extends Component {
       .catch(error => console.log(error))
 
     fetch(process.env.REACT_APP_DATABASE_API_URL + '/api/v1/job-types')
-      .then(response => response.json())
+      .then(responses => responses.json())
       .then(job_types => {
         addJobTypesToStore(job_types);
       })

@@ -4,21 +4,29 @@ import './JobsContainer.css';
 import { JobCard } from '../../components/JobCard/JobCard';
 
 
-export const JobsContainer = (props) => {
-  
-  const displayJobCards = () => {
-    return props.jobs.map(job =>  {
-    const jobType = props.jobTypes.find(type => type.id === job.job_title_id);
-    // console.log(jobType)
-    return <JobCard description={job.description} company={job.company} location={job.location} status={job.status} jobType={jobType} jobTypes={props.jobTypes}/>
+export class JobsContainer extends React.Component {
+  displayJobCards = () => {
+    if(!this.props.jobTypes.length) {
+      return
+    }
+    return this.props.jobs.map(job =>  {
+      console.log(this.props.jobTypes)
+    const jobType = this.props.jobTypes.find(type => {
+      return type.id === job.job_title_id
+    });
+    return <JobCard description={job.description} company={job.company} location={job.location} status={job.status} jobType={jobType} />
     })
   }
 
-  return (
-    <ul>
-      {displayJobCards()}
-    </ul>
-  )
+  render() {
+    const jobCards = this.displayJobCards()
+    return (
+      <ul>
+        {jobCards}
+      </ul>
+    )
+
+  }
 }
 
   export const mapStateToProps = state => ({
