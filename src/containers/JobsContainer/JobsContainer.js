@@ -7,7 +7,11 @@ import { JobCard } from '../../components/JobCard/JobCard';
 export const JobsContainer = (props) => {
   
   const displayJobCards = () => {
-    return props.jobs.map(job =>  <JobCard description={job.description} company={job.company} location={job.location} status={job.status} jobTitleId={job.job_title_id} jobTypes={props.jobTypes}/>)
+    return props.jobs.map(job =>  {
+    const jobType = props.jobTypes.find(type => type.id === job.job_title_id);
+    // console.log(jobType)
+    return <JobCard description={job.description} company={job.company} location={job.location} status={job.status} jobType={jobType} jobTypes={props.jobTypes}/>
+    })
   }
 
   return (
