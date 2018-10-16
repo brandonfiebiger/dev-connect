@@ -3,28 +3,31 @@ import { connect } from 'react-redux';
 import { JobCard } from '../../components/JobCard/JobCard';
 import './JobsContainer.css';
 
-export const JobsContainer = props => {
-  const displayJobCards = () => {
 
-    return props.jobs.map(job => (
-      <JobCard
-        description={job.description}
-        company={job.company}
-        location={job.location}
-        status={job.status}
-        jobTitleId={job.job_title_id}
-        jobTypes={props.jobTypes}
-      />
-    ));
-  };
+export class JobsContainer extends React.Component {
+  displayJobCards = () => {
+    if(!this.props.jobTypes.length) {
+      return
+    }
+    return this.props.jobs.map(job =>  {
+      console.log(this.props.jobTypes)
+    const jobType = this.props.jobTypes.find(type => {
+      return type.id === job.job_title_id
+    });
+    return <JobCard description={job.description} company={job.company} location={job.location} status={job.status} jobType={jobType} />
+    })
+  }
 
-  return (
-    <div>
-      <h1>Job Seekers</h1>
-      <ul>{displayJobCards()}</ul>
-    </div>
-  );
-};
+  render() {
+    const jobCards = this.displayJobCards()
+    return (
+      <ul>
+        {jobCards}
+      </ul>
+    )
+
+  }
+}
 
 export const mapStateToProps = state => ({
   jobs: state.jobs,
