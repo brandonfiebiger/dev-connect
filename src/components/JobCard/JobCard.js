@@ -4,8 +4,8 @@ import './JobCard.css';
 export const JobCard = () => {
 
   return (
-    <div>
+    <li>
       Card
-    </div>
+    </li>
   )
 }

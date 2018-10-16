@@ -11,9 +11,9 @@ export const JobsContainer = (props) => {
   }
 
   return (
-    <div>
+    <ul>
       {displayJobCards()}
-    </div>
+    </ul>
   )
 }
 
