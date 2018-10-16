@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import { connect } from 'react-redux';
 import Home from '../Home/Home';
 import JobsContainer from '../JobsContainer/JobsContainer';
-import { EmployerContainer } from '../EmployerContainer/EmployerContainer';
+import EmployerContainer from '../EmployerContainer/EmployerContainer';
 import './App.css';
 
 export default class App extends Component {
