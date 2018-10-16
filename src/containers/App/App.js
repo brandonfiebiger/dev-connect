@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
-import { addJobs } from '../../actions';
+import { addJobs, addJobTypes } from '../../actions';
 import JobsContainer from '../JobsContainer/JobsContainer';
 
 class App extends Component {
@@ -14,16 +14,21 @@ class App extends Component {
   }
 
   componentDidMount() {
+    const { addJobsToStore, addJobTypesToStore } = this.props;
     fetch(process.env.REACT_APP_DATABASE_API_URL + '/api/v1/jobs')
       .then(response => response.json())
       .then(jobs => {
-        this.props.addJobsToStore(jobs);
+        addJobsToStore(jobs);
       })
       .catch(error => console.log(error))
+
     fetch(process.env.REACT_APP_DATABASE_API_URL + '/api/v1/job-types')
       .then(response => response.json())
       .then(job_types => {
-        console.log(job_types);
+        addJobTypesToStore(job_types);
+      })
+      .catch(error => {
+        console.log(error);
       })
   }
 
@@ -40,7 +45,8 @@ class App extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  addJobsToStore: jobs => dispatch(addJobs(jobs))
+  addJobsToStore: jobs => dispatch(addJobs(jobs)),
+  addJobTypesToStore: jobTypes => dispatch(addJobTypes(jobTypes))
 })
 
 export default connect(null, mapDispatchToProps)(App);
