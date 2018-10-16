@@ -1,14 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './JobsContainer.css';
+import { JobCard } from '../../components/JobCard/JobCard';
 
 
 export const JobsContainer = (props) => {
-  console.log(props)
+  
+  const displayJobCards = () => {
+    return props.jobs.map(job =>  <JobCard />)
+  }
 
   return (
     <div>
-      Container
+      {displayJobCards()}
     </div>
   )
 }
