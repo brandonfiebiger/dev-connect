@@ -5,6 +5,7 @@ import './JobsContainer.css';
 
 export const JobsContainer = props => {
   const displayJobCards = () => {
+
     return props.jobs.map(job => (
       <JobCard
         description={job.description}
