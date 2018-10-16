@@ -7,7 +7,13 @@ export class EmployerContainer extends Component {
   constructor() {
     super();
     this.state = {
-      jobType: {}
+      jobType: {},
+      jobTitle: '',
+      description: '',
+      company: '',
+      location: '',
+      salary: 0,
+      toggleRender: false
     };
   }
 
@@ -16,21 +22,77 @@ export class EmployerContainer extends Component {
     return jobTypes.map(type => <option>{type.job_title}</option>);
   };
 
+  handleJobTitleSelect = e => {
+    const selectValue = e.target.value;
+
+    if (!this.state.jobTitle === 'Add New Job Title +') {
+      this.setState({ toggleRender: false });
+    } else {
+      this.setState({ jobTitle: selectValue, toggleRender: true });
+    }
+  };
+
+  handleChange = e => {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+  };
+
   render() {
+    const { jobTitle, toggleRender } = this.state;
+    const titleInput = document.querySelector('.employer-input');
     return (
       <div>
         <h1>Employers</h1>
-        <form>
-          <select>
-            {this.addJobTitleOptions()}
-            <option>Add New Job Title +</option>
-          </select>
-          <input name="title" />
-          <input name="salary" />
-          <input name="company" />
-          <input name="location" />
-          <input name="description" />
-          <button>Add Job</button>
+        <form className="employer-form">
+          <div>
+            <select
+              className="job-title-select"
+              name="jobTitle"
+              onChange={
+                (e => this.handleChange(e), e => this.handleJobTitleSelect(e))
+              }
+            >
+              <option>Please Select A Job Type</option>
+              {this.addJobTitleOptions()}
+              <option>Add New Job Title +</option>
+            </select>
+          </div>
+          {(toggleRender || titleInput) && (
+            <input
+              className="employer-input"
+              name="jobTitle"
+              placeholder="Job Title"
+              onChange={this.handleChange}
+            />
+          )}
+          <input
+            className="employer-input"
+            name="company"
+            placeholder="Company Name"
+            onChange={this.handleChange}
+          />
+          <input
+            className="employer-input"
+            name="location"
+            placeholder="Location"
+            onChange={this.handleChange}
+          />
+          {(toggleRender || titleInput) && (
+            <input
+              type="number"
+              className="employer-input"
+              name="salary"
+              placeholder="Salary"
+              onChange={this.handleChange}
+            />
+          )}
+          <input
+            className="employer-input description"
+            name="description"
+            placeholder="Job Description"
+            onChange={this.handleChange}
+          />
+          <button className="add-job-button">Add Job</button>
         </form>
       </div>
     );
