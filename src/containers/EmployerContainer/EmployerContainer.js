@@ -25,8 +25,9 @@ export class EmployerContainer extends Component {
   handleJobTitleSelect = e => {
     const selectValue = e.target.value;
 
-    if (!this.state.jobTitle === 'Add New Job Title +') {
-      this.setState({ toggleRender: false });
+    if (e.target.value !== 'Add New Job Title +') {
+      const foundType = this.props.jobTypes.find(type => type.job_title === selectValue)
+      this.setState({ toggleRender: false, jobType: foundType });
     } else {
       this.setState({ jobTitle: selectValue, toggleRender: true });
     }
@@ -42,6 +43,8 @@ export class EmployerContainer extends Component {
     const { jobType, jobTitle, company, location, salary, description} = this.state;
     if (!Object.keys(jobType).length) {
       console.log('hello')
+    } else {
+      console.log('good job')
     }
   }
 
