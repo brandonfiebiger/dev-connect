@@ -1,0 +1,71 @@
+h1 {
+  color: #72cc26;
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: 0.1rem;
+}
+
+button:focus {
+  outline: 0;
+}
+
+header {
+  width: 100vw;
+}
+
+.App {
+  text-align: center;
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: calc(10px + 2vmin);
+}
+
+.homepage-button {
+  font-size: 12.5px;
+  color: #6c7686;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.29);
+  letter-spacing: 2px;
+  display: inline-block;
+  background: #c0c0c0;
+  font-weight: 900;
+  line-height: 40px;
+  margin: 10rem 1.5rem 0 1.5rem;
+  cursor: pointer;
+  transition: all ease-in-out 100ms;
+  width: 190px;
+  height: 50px;
+  -webkit-font-smoothing: antialiased;
+  background: linear-gradient(-179deg, #f4f4f4 0%, #c0c0c0 100%);
+  box-shadow: 0 5px 6px -4px rgba(0, 0, 0, 0.22),
+    0 10px 13px -4px rgba(0, 0, 0, 0.34),
+    inset 0 30px 30px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -30px 30px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 140px;
+}
+
+.homepage-button:hover {
+  box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.22),
+    0 10px 13px 0px rgba(0, 0, 0, 0.34),
+    inset 0 18px 18px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -18px 18px 0 rgba(0, 0, 0, 0.1);
+  transform: translate(0px, -4px);
+  backface-visibility: hidden;
+  color: #7a8393;
+}
+
+.homepage-button:active {
+  box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.22),
+    0 10px 13px 0px rgba(0, 0, 0, 0.34),
+    inset 0 3px 3px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -3px 3px 0 rgba(0, 0, 0, 0.1);
+  backface-visibility: hidden;
+}
+
+.job-seeker-link,
+.employer-link {
+  text-decoration: none;
+  color: #6c7686;
+}
