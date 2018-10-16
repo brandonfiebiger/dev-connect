@@ -1,11 +1,115 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { addNewJobType, addNewJob } from '../../actions';
 import './EmployerContainer.css';
 
-export const EmployerContainer = () => {
-  return (
-    <div>
-      <h1>Employers</h1>
-    </div>
-  );
-};
+export class EmployerContainer extends Component {
+  constructor() {
+    super();
+    this.state = {
+      jobType: {},
+      jobTitle: '',
+      description: '',
+      company: '',
+      location: '',
+      salary: 0,
+      toggleRender: false
+    };
+  }
+
+  addJobTitleOptions = () => {
+    const { jobs, jobTypes } = this.props;
+    return jobTypes.map(type => <option>{type.job_title}</option>);
+  };
+
+  handleJobTitleSelect = e => {
+    const selectValue = e.target.value;
+
+    if (!this.state.jobTitle === 'Add New Job Title +') {
+      this.setState({ toggleRender: false });
+    } else {
+      this.setState({ jobTitle: selectValue, toggleRender: true });
+    }
+  };
+
+  handleChange = e => {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+  };
+
+  render() {
+    const { jobTitle, toggleRender } = this.state;
+    const titleInput = document.querySelector('.employer-input');
+    return (
+      <div>
+        <h1>Employers</h1>
+        <form className="employer-form">
+          <div>
+            <select
+              className="job-title-select"
+              name="jobTitle"
+              onChange={
+                (e => this.handleChange(e), e => this.handleJobTitleSelect(e))
+              }
+            >
+              <option>Please Select A Job Type</option>
+              {this.addJobTitleOptions()}
+              <option>Add New Job Title +</option>
+            </select>
+          </div>
+          {(toggleRender || titleInput) && (
+            <input
+              className="employer-input"
+              name="jobTitle"
+              placeholder="Job Title"
+              onChange={this.handleChange}
+            />
+          )}
+          <input
+            className="employer-input"
+            name="company"
+            placeholder="Company Name"
+            onChange={this.handleChange}
+          />
+          <input
+            className="employer-input"
+            name="location"
+            placeholder="Location"
+            onChange={this.handleChange}
+          />
+          {(toggleRender || titleInput) && (
+            <input
+              type="number"
+              className="employer-input"
+              name="salary"
+              placeholder="Salary"
+              onChange={this.handleChange}
+            />
+          )}
+          <input
+            className="employer-input description"
+            name="description"
+            placeholder="Job Description"
+            onChange={this.handleChange}
+          />
+          <button className="add-job-button">Add Job</button>
+        </form>
+      </div>
+    );
+  }
+}
+
+export const mapStateToProps = state => ({
+  jobs: state.jobs,
+  jobTypes: state.jobTypes
+});
+
+export const mapDispatchToProps = dispatch => ({
+  addJobType: jobType => dispatch(addNewJobType(jobType)),
+  addJob: job => dispatch(addNewJob(job))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EmployerContainer);
