@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import './JobsContainer.css';
 import { JobCard } from '../../components/JobCard/JobCard';
+import './JobsContainer.css';
 
 
 export class JobsContainer extends React.Component {
@@ -29,9 +29,12 @@ export class JobsContainer extends React.Component {
   }
 }
 
-  export const mapStateToProps = state => ({
-    jobs: state.jobs,
-    jobTypes: state.jobTypes
-  })
+export const mapStateToProps = state => ({
+  jobs: state.jobs,
+  jobTypes: state.jobTypes
+});
 
-  export default connect(mapStateToProps, null)(JobsContainer);
+export default connect(
+  mapStateToProps,
+  null
+)(JobsContainer);

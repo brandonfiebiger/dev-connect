@@ -1,3 +1,3 @@
-export const testReducer = (state = "It works", action) => {
+export const testReducer = (state = 'It works', action) => {
   return state;
-}
+};

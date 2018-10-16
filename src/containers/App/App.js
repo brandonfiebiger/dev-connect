@@ -1,52 +1,19 @@
 import React, { Component } from 'react';
-import './App.css';
+import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addJobs, addJobTypes } from '../../actions';
+import Home from '../Home/Home';
 import JobsContainer from '../JobsContainer/JobsContainer';
+import { EmployerContainer } from '../EmployerContainer/EmployerContainer';
+import './App.css';
 
-class App extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      jobs: []
-    }
-  }
-
-  componentDidMount() {
-    const { addJobsToStore, addJobTypesToStore } = this.props;
-    fetch(process.env.REACT_APP_DATABASE_API_URL + '/api/v1/jobs')
-      .then(response => response.json())
-      .then(jobs => {
-        addJobsToStore(jobs);
-      })
-      .catch(error => console.log(error))
-
-    fetch(process.env.REACT_APP_DATABASE_API_URL + '/api/v1/job-types')
-      .then(responses => responses.json())
-      .then(job_types => {
-        addJobTypesToStore(job_types);
-      })
-      .catch(error => {
-        console.log(error);
-      })
-  }
-
+export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1>DevConnect!!</h1>
-          <JobsContainer />
-        </header>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/job-seeker" component={JobsContainer} />
+        <Route exact path="/employer" component={EmployerContainer} />
       </div>
     );
   }
 }
-
-const mapDispatchToProps = dispatch => ({
-  addJobsToStore: jobs => dispatch(addJobs(jobs)),
-  addJobTypesToStore: jobTypes => dispatch(addJobTypes(jobTypes))
-})
-
-export default connect(null, mapDispatchToProps)(App);
