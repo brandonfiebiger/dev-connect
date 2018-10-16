@@ -37,13 +37,21 @@ export class EmployerContainer extends Component {
     this.setState({ [name]: value });
   };
 
+  postJob = (state, event) => {
+    event.preventDefault();
+    const { jobType, jobTitle, company, location, salary, description} = this.state;
+    if (!Object.keys(jobType).length) {
+      console.log('hello')
+    }
+  }
+
   render() {
     const { jobTitle, toggleRender } = this.state;
     const titleInput = document.querySelector('.employer-input');
     return (
       <div>
         <h1>Employers</h1>
-        <form className="employer-form">
+        <form className="employer-form" onSubmit={e => this.postJob(this.state, e)}>
           <div>
             <select
               className="job-title-select"
