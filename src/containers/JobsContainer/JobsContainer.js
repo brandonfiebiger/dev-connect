@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { JobCard } from '../../components/JobCard/JobCard';
+import JobCard from '../../components/JobCard/JobCard';
+import { NavLink } from 'react-router-dom';
 import './JobsContainer.css';
 
 export class JobsContainer extends React.Component {
@@ -18,7 +19,8 @@ export class JobsContainer extends React.Component {
           company={job.company}
           location={job.location}
           status={job.status}
-          // jobType={jobType}
+          id={job.id}
+          jobType={jobType}
         />
       );
     });
@@ -28,7 +30,10 @@ export class JobsContainer extends React.Component {
     const jobCards = this.displayJobCards();
     return (
       <div>
-        <h1>Job Seekers</h1>
+        <header>
+          <h1>Job Seekers</h1>
+          <NavLink to="/saved">Saved Jobs</NavLink>
+        </header>
         <div>{jobCards}</div>
       </div>
     );
