@@ -5,17 +5,28 @@ import { removeJob } from '../../actions';
 
 export class SavedJobs extends Component {
   displaySavedCard = () => {
-    if (!this.props.savedJobs.length) {
+    const { savedJobs, jobs, jobTypes } = this.props;
+
+    if (!savedJobs.length) {
       return;
     }
-    return this.props.savedJobs.map(job => (
-      <SavedCard
-        description={job.description}
-        company={job.company}
-        location={job.location}
-        id={job.id}
-      />
-    ));
+    return savedJobs.map(id => {
+      const matchedJob = jobs.find(job => job.id === id);
+      const matchedJobType = jobTypes.find(
+        type => type.id === matchedJob.job_title_id
+      );
+
+      return (
+        <SavedCard
+          description={matchedJob.description}
+          company={matchedJob.company}
+          location={matchedJob.location}
+          title={matchedJobType.job_title}
+          status={matchedJob.status}
+          id={matchedJob.id}
+        />
+      );
+    });
   };
 
   render() {
@@ -30,6 +41,8 @@ export class SavedJobs extends Component {
 }
 
 export const mapStateToProps = state => ({
+  jobs: state.jobs,
+  jobTypes: state.jobTypes,
   savedJobs: state.savedJobs
 });
 

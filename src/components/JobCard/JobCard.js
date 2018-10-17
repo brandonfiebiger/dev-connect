@@ -28,16 +28,19 @@ export class JobCard extends Component {
   };
 
   handleJobStatus = () => {
-    const { status, removeJob, saveJob } = this.props;
+    const { removeJob, saveJob, savedJobs, id } = this.props;
 
-    if (status === 'saved') {
-      return removeJob(this.props);
+    if (savedJobs.includes(id)) {
+      removeJob(id);
     }
-    saveJob(this.props);
+
+    if (!savedJobs.includes(id)) {
+      saveJob(id);
+    }
   };
 
   render() {
-    const { description, company, location } = this.props;
+    const { description, company, location, jobType } = this.props;
 
     const allLocations = location.split(' ');
 
@@ -52,6 +55,7 @@ export class JobCard extends Component {
     return (
       <div className="job-card">
         <h3>{newCompany}</h3>
+        <h4>{jobType}</h4>
         <p>{newLocations.join(' ')}</p>
         <p>{description}</p>
         <button onClick={this.updateJobSaveStatus}>Save Job</button>
@@ -65,7 +69,11 @@ export const mapDispatchToProps = dispatch => ({
   removeJob: job => dispatch(removeJob(job))
 });
 
+export const mapStateToProps = state => ({
+  savedJobs: state.savedJobs
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(JobCard);

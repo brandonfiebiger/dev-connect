@@ -28,17 +28,18 @@ export class SavedCard extends Component {
   };
 
   handleRemoveCard = () => {
-    const { removeJob } = this.props;
+    const { removeJob, id } = this.props;
 
-    removeJob(this.props);
+    removeJob(id);
   };
 
   render() {
-    const { description, company, location } = this.props;
+    const { description, company, location, title } = this.props;
 
     return (
       <div className="job-card">
         <h3>{company}</h3>
+        <h4>{title}</h4>
         <p>{location}</p>
         <p>{description}</p>
         <button onClick={this.updateJobSaveStatus}>Remove Job</button>
