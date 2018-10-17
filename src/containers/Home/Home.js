@@ -3,8 +3,6 @@ import { NavLink } from 'react-router-dom';
 import './Home.css';
 
 export class Home extends Component {
-  
-
   render() {
     return (
       <div className="homepage-container">

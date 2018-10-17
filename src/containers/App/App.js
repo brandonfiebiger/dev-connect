@@ -3,13 +3,12 @@ import { Route, withRouter } from 'react-router-dom';
 import Home from '../Home/Home';
 import JobsContainer from '../JobsContainer/JobsContainer';
 import EmployerContainer from '../EmployerContainer/EmployerContainer';
+import SavedJobs from '../SavedJobs/SavedJobs';
 import './App.css';
 import { addJobs, addJobTypes } from '../../actions';
 import { connect } from 'react-redux';
 
-
 export class App extends Component {
-
   componentDidMount() {
     const { addJobsToStore, addJobTypesToStore } = this.props;
     fetch(process.env.REACT_APP_DATABASE_API_URL + '/api/v1/jobs')
@@ -35,6 +34,7 @@ export class App extends Component {
         <Route exact path="/" component={Home} />
         <Route exact path="/job-seeker" component={JobsContainer} />
         <Route exact path="/employer" component={EmployerContainer} />
+        <Route exact path="/saved" component={SavedJobs} />
       </div>
     );
   }
@@ -45,7 +45,9 @@ const mapDispatchToProps = dispatch => ({
   addJobTypesToStore: jobTypes => dispatch(addJobTypes(jobTypes))
 });
 
-export default withRouter(connect(
-  null,
-  mapDispatchToProps
-)(App));
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps
+  )(App)
+);
