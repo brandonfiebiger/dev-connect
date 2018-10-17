@@ -18,7 +18,7 @@ export class JobsContainer extends React.Component {
           company={job.company}
           location={job.location}
           status={job.status}
-          jobType={jobType}
+          // jobType={jobType}
         />
       );
     });
@@ -29,7 +29,7 @@ export class JobsContainer extends React.Component {
     return (
       <div>
         <h1>Job Seekers</h1>
-        <ul>{jobCards}</ul>
+        <div>{jobCards}</div>
       </div>
     );
   }
