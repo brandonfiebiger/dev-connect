@@ -41,8 +41,7 @@ export class EmployerContainer extends Component {
   postJob = (state, event) => {
     event.preventDefault();
     const { jobType, jobTitle, company, location, salary, description } = this.state;
-    if (!Object.keys(jobType).length) {
-      console.log(jobTitle)
+    if (!Object.keys(jobType).length && jobTitle) {
       fetch(process.env.REACT_APP_DATABASE_API_URL + '/api/v1/job-types', {
         method: 'POST',
         body: JSON.stringify({
@@ -61,14 +60,23 @@ export class EmployerContainer extends Component {
           id: id.id
         })
       })
-
-      .catch(error => console.log(error.error)) 
-      this.setState({
-        jobType: {
-        salary,
-        job_title: jobTitle
-      }
-    })
+      .catch(error => console.log(error.error))
+      
+      fetch(process.env.REACT_APP_DATABASE_API_URL + '/api/v1/jobs', {
+        method: 'POST',
+        body: JSON.stringify({
+          description,
+          company,
+          location,
+          status: 'none'
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      })
+      .then(response => response.json())
+      .then(id => console.log(id))
+      .catch(error => console.log(error));
     } else {
       console.log('good job')
     }
