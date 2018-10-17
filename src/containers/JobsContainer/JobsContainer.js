@@ -13,6 +13,7 @@ export class JobsContainer extends React.Component {
       const jobType = this.props.jobTypes.find(type => {
         return type.id === job.job_title_id;
       });
+
       return (
         <JobCard
           description={job.description}
@@ -20,7 +21,7 @@ export class JobsContainer extends React.Component {
           location={job.location}
           status={job.status}
           id={job.id}
-          jobType={jobType}
+          jobType={jobType.job_title}
         />
       );
     });
