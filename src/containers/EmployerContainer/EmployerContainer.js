@@ -42,7 +42,28 @@ export class EmployerContainer extends Component {
     event.preventDefault();
     const { jobType, jobTitle, company, location, salary, description} = this.state;
     if (!Object.keys(jobType).length) {
-      console.log('hello')
+      console.log(jobTitle)
+      fetch(process.env.REACT_APP_DATABASE_API_URL + '/api/v1/job-types', {
+        method: 'POST',
+        body: JSON.stringify({
+          job_title: jobTitle,
+          average_salary: salary
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      })
+      .then(response => response.json())
+      .then(id => {
+        console.log(id);
+      }) 
+      .catch(error => console.log(error.error)) 
+      this.setState({
+        jobType: {
+        salary,
+        job_title: jobTitle
+      }
+    })
     } else {
       console.log('good job')
     }
