@@ -75,10 +75,40 @@ export class EmployerContainer extends Component {
         },
       })
       .then(response => response.json())
-      .then(id => console.log(id))
+      .then(id => {
+        this.props.addJob({
+          id: id.id,
+          company,
+          description,
+          location,
+          status: 'none'
+        })
+      })
       .catch(error => console.log(error));
     } else {
-      console.log('good job')
+      fetch(process.env.REACT_APP_DATABASE_API_URL + '/api/v1/jobs', {
+        method: 'POST',
+        body: JSON.stringify({
+          description,
+          company,
+          location,
+          status: 'none'
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      })
+      .then(response => response.json())
+      .then(id => {
+        this.props.addJob({
+          id: id.id,
+          company,
+          description,
+          location,
+          status: 'none'
+        })
+      })
+      .catch(error => console.log(error));
     }
   }
 
