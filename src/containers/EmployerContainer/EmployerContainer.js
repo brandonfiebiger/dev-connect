@@ -40,7 +40,7 @@ export class EmployerContainer extends Component {
 
   postJob = (state, event) => {
     event.preventDefault();
-    const { jobType, jobTitle, company, location, salary, description} = this.state;
+    const { jobType, jobTitle, company, location, salary, description } = this.state;
     if (!Object.keys(jobType).length) {
       console.log(jobTitle)
       fetch(process.env.REACT_APP_DATABASE_API_URL + '/api/v1/job-types', {
@@ -55,8 +55,13 @@ export class EmployerContainer extends Component {
       })
       .then(response => response.json())
       .then(id => {
-        console.log(id);
-      }) 
+        this.props.addJobType({
+          job_title: jobTitle,
+          average_salary: salary,
+          id: id.id
+        })
+      })
+
       .catch(error => console.log(error.error)) 
       this.setState({
         jobType: {
