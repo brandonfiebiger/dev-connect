@@ -1,0 +1,214 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JobCard should match the snapshot 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <JobCard
+    company="Gusto"
+    description="We are looking for a talented developer"
+    jobType="UX Designer"
+    location="Denver, CO"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <h3>
+          Gusto
+        </h3>,
+        <h4>
+          UX Designer
+        </h4>,
+        <p>
+          Denver, Co
+        </p>,
+        <p>
+          We are looking for a talented developer
+        </p>,
+        <button
+          onClick={[Function]}
+        >
+          Save Job
+        </button>,
+      ],
+      "className": "job-card",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Gusto",
+        },
+        "ref": null,
+        "rendered": "Gusto",
+        "type": "h3",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "UX Designer",
+        },
+        "ref": null,
+        "rendered": "UX Designer",
+        "type": "h4",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Denver, Co",
+        },
+        "ref": null,
+        "rendered": "Denver, Co",
+        "type": "p",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "We are looking for a talented developer",
+        },
+        "ref": null,
+        "rendered": "We are looking for a talented developer",
+        "type": "p",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Save Job",
+          "onClick": [Function],
+        },
+        "ref": null,
+        "rendered": "Save Job",
+        "type": "button",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <h3>
+            Gusto
+          </h3>,
+          <h4>
+            UX Designer
+          </h4>,
+          <p>
+            Denver, Co
+          </p>,
+          <p>
+            We are looking for a talented developer
+          </p>,
+          <button
+            onClick={[Function]}
+          >
+            Save Job
+          </button>,
+        ],
+        "className": "job-card",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Gusto",
+          },
+          "ref": null,
+          "rendered": "Gusto",
+          "type": "h3",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "UX Designer",
+          },
+          "ref": null,
+          "rendered": "UX Designer",
+          "type": "h4",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Denver, Co",
+          },
+          "ref": null,
+          "rendered": "Denver, Co",
+          "type": "p",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "We are looking for a talented developer",
+          },
+          "ref": null,
+          "rendered": "We are looking for a talented developer",
+          "type": "p",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Save Job",
+            "onClick": [Function],
+          },
+          "ref": null,
+          "rendered": "Save Job",
+          "type": "button",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;
