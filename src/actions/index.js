@@ -17,3 +17,13 @@ export const addNewJob = job => ({
   type: 'ADD_NEW_JOB',
   job
 });
+
+export const saveJob = job => ({
+  type: 'SAVE_JOB',
+  job
+});
+
+export const removeJob = job => ({
+  type: 'REMOVE_JOB',
+  job
+});
