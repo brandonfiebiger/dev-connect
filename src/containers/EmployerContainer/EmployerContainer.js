@@ -18,7 +18,7 @@ export class EmployerContainer extends Component {
   }
 
   addJobTitleOptions = () => {
-    const { jobs, jobTypes } = this.props;
+    const { jobTypes } = this.props;
     return jobTypes.map(type => <option>{type.job_title}</option>);
   };
 
@@ -26,7 +26,9 @@ export class EmployerContainer extends Component {
     const selectValue = e.target.value;
 
     if (e.target.value !== 'Add New Job Title +') {
-      const foundType = this.props.jobTypes.find(type => type.job_title === selectValue)
+      const foundType = this.props.jobTypes.find(
+        type => type.job_title === selectValue
+      );
       this.setState({ toggleRender: false, jobType: foundType });
     } else {
       this.setState({ jobTitle: selectValue, toggleRender: true });
@@ -40,7 +42,14 @@ export class EmployerContainer extends Component {
 
   postJob = (state, event) => {
     event.preventDefault();
-    const { jobType, jobTitle, company, location, salary, description } = this.state;
+    const {
+      jobType,
+      jobTitle,
+      company,
+      location,
+      salary,
+      description
+    } = this.state;
     if (!Object.keys(jobType).length && jobTitle) {
       fetch(process.env.REACT_APP_DATABASE_API_URL + '/api/v1/job-types', {
         method: 'POST',
@@ -50,18 +59,18 @@ export class EmployerContainer extends Component {
         }),
         headers: {
           'Content-Type': 'application/json'
-        },
+        }
       })
-      .then(response => response.json())
-      .then(id => {
-        this.props.addJobType({
-          job_title: jobTitle,
-          average_salary: salary,
-          id: id.id
+        .then(response => response.json())
+        .then(id => {
+          this.props.addJobType({
+            job_title: jobTitle,
+            average_salary: salary,
+            id: id.id
+          });
         })
-      })
-      .catch(error => console.log(error.error))
-      
+        .catch(error => console.log(error.error));
+
       fetch(process.env.REACT_APP_DATABASE_API_URL + '/api/v1/jobs', {
         method: 'POST',
         body: JSON.stringify({
@@ -72,19 +81,19 @@ export class EmployerContainer extends Component {
         }),
         headers: {
           'Content-Type': 'application/json'
-        },
+        }
       })
-      .then(response => response.json())
-      .then(id => {
-        this.props.addJob({
-          id: id.id,
-          company,
-          description,
-          location,
-          status: 'none'
+        .then(response => response.json())
+        .then(id => {
+          this.props.addJob({
+            id: id.id,
+            company,
+            description,
+            location,
+            status: 'none'
+          });
         })
-      })
-      .catch(error => console.log(error));
+        .catch(error => console.log(error));
     } else {
       fetch(process.env.REACT_APP_DATABASE_API_URL + '/api/v1/jobs', {
         method: 'POST',
@@ -92,33 +101,39 @@ export class EmployerContainer extends Component {
           description,
           company,
           location,
-          status: 'none'
+          status: 'none',
+          job_title_id: jobType.id
         }),
         headers: {
           'Content-Type': 'application/json'
-        },
+        }
       })
-      .then(response => response.json())
-      .then(id => {
-        this.props.addJob({
-          id: id.id,
-          company,
-          description,
-          location,
-          status: 'none'
+        .then(response => response.json())
+        .then(id => {
+          this.props.addJob({
+            id: id.id,
+            company,
+            description,
+            location,
+            status: 'none',
+            job_title_id: jobType.id
+          });
         })
-      })
-      .catch(error => console.log(error));
+        .catch(error => console.log(error));
     }
-  }
+  };
 
   render() {
-    const { jobTitle, toggleRender } = this.state;
+    const { toggleRender } = this.state;
     const titleInput = document.querySelector('.employer-input');
+
     return (
       <div>
         <h1>Employers</h1>
-        <form className="employer-form" onSubmit={e => this.postJob(this.state, e)}>
+        <form
+          className="employer-form"
+          onSubmit={e => this.postJob(this.state, e)}
+        >
           <div>
             <select
               className="job-title-select"
