@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
-import { testReducer } from './testReducer';
 import { jobsReducer } from './jobsReducer';
 import { jobTypesReducer } from './jobTypesReducer';
+import { savedJobsReducer } from './savedJobsReducer';
 
 const rootReducer = combineReducers({
-  testReducer,
   jobs: jobsReducer,
-  jobTypes: jobTypesReducer
+  jobTypes: jobTypesReducer,
+  savedJobs: savedJobsReducer
 });
 
 export default rootReducer;
