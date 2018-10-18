@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 import { addNewJobType, addNewJob } from '../../actions';
 import { NavLink } from 'react-router-dom';
 import './EmployerContainer.css';
-import { postNewJobType, postNewJobWithNewJobType, postNewJob } from '../../utils/apiCalls';
+import {
+  postNewJobType,
+  postNewJobWithNewJobType,
+  postNewJob
+} from '../../utils/apiCalls';
 
 export class EmployerContainer extends Component {
   constructor() {
@@ -14,7 +18,7 @@ export class EmployerContainer extends Component {
       description: '',
       company: '',
       location: '',
-      salary: 0,
+      salary: 0
     };
   }
 
@@ -50,8 +54,8 @@ export class EmployerContainer extends Component {
       description
     } = this.state;
     if (!Object.keys(jobType).length && jobTitle) {
-      const jobTypeId = await postNewJobType(this.state)
-      
+      const jobTypeId = await postNewJobType(this.state);
+
       this.props.addJobType({
         job_title: jobTitle,
         average_salary: salary,
@@ -69,7 +73,7 @@ export class EmployerContainer extends Component {
         job_title_id: jobType.id
       });
     } else {
-      const newId = await postNewJob(this.state)
+      const newId = await postNewJob(this.state);
 
       this.props.addJob({
         id: newId,
@@ -83,11 +87,14 @@ export class EmployerContainer extends Component {
   };
 
   render() {
-    const titleInput = document.querySelector('.employer-input');
-
     return (
       <div className="employer-container">
-        <h1>Employers</h1>
+        <header>
+          <h1>Employers</h1>
+          <NavLink className="jobs-container-link" to="/">
+            Home
+          </NavLink>
+        </header>
         <form
           className="employer-form"
           onSubmit={e => this.postJob(this.state, e)}
@@ -105,12 +112,12 @@ export class EmployerContainer extends Component {
               <option>Add New Job Title +</option>
             </select>
           </div>
-            <input
-              className="employer-input"
-              name="jobTitle"
-              placeholder="Job Title"
-              onChange={this.handleChange}
-            />
+          <input
+            className="employer-input"
+            name="jobTitle"
+            placeholder="Job Title"
+            onChange={this.handleChange}
+          />
           <input
             className="employer-input"
             name="company"
@@ -123,19 +130,19 @@ export class EmployerContainer extends Component {
             placeholder="Location"
             onChange={this.handleChange}
           />
-            <input
-              type="number"
-              className="employer-input"
-              name="salary"
-              placeholder="Salary"
-              onChange={this.handleChange}
-            />
-          <textarea 
-            className="employer-input description" 
+          <input
+            type="number"
+            className="employer-input"
+            name="salary"
+            placeholder="Salary"
+            onChange={this.handleChange}
+          />
+          <textarea
+            className="employer-input description"
             name="description"
             placeholder="Job Description"
             onChange={this.handleChange}
-            ></textarea>
+          />
           <button className="add-job-button">Add Job</button>
         </form>
       </div>
