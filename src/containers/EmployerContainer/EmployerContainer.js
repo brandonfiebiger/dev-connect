@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addNewJobType, addNewJob } from '../../actions';
 import './EmployerContainer.css';
-import { postNewJobType } from '../../utils/apiCalls';
+import { postNewJobType, postNewJobWithNewJobType } from '../../utils/apiCalls';
 
 export class EmployerContainer extends Component {
   constructor() {
@@ -51,32 +51,23 @@ export class EmployerContainer extends Component {
     } = this.state;
     if (!Object.keys(jobType).length && jobTitle) {
       const jobTypeId = await postNewJobType(this.state)
+      
+      this.props.addJobType({
+        job_title: jobTitle,
+        average_salary: salary,
+        id: jobTypeId
+      });
 
-      fetch(process.env.REACT_APP_DATABASE_API_URL + '/api/v1/jobs', {
-        method: 'POST',
-        body: JSON.stringify({
-          description,
-          company,
-          location,
-          status: 'none',
-          job_title_id: jobType.id
-        }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-        .then(response => response.json())
-        .then(id => {
-          this.props.addJob({
-            id: id.id,
-            company,
-            description,
-            location,
-            status: 'none',
-            job_title_id: jobType.id
-          });
-        })
-        .catch(error => console.log(error));
+      const jobId = await postNewJobWithNewJobType(this.state, jobTypeId);
+
+      this.props.addJob({
+        id: jobId,
+        company,
+        description,
+        location,
+        status: 'none',
+        job_title_id: jobType.id
+      });
     } else {
       fetch(process.env.REACT_APP_DATABASE_API_URL + '/api/v1/jobs', {
         method: 'POST',
