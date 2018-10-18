@@ -30,8 +30,8 @@ export class JobsContainer extends React.Component {
   render() {
     const jobCards = this.displayJobCards();
     return (
-      <div>
-        <header>
+      <div className="jobs-container">
+        <header className="jobs-container-header">
           <h1>Job Seekers</h1>
           <NavLink to="/saved">Saved Jobs</NavLink>
         </header>
