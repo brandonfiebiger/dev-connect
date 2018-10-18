@@ -6,8 +6,8 @@ export class Home extends Component {
   render() {
     return (
       <div className="homepage-container">
-        <header>
-          <h1>DevConnect</h1>
+        <header className="homepage-header">
+          <h1 className="dev-connect-header">DevConnect</h1>
         </header>
         <div className="button-container">
           <button className="homepage-button">
