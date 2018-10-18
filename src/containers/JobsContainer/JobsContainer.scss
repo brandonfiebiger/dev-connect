@@ -4,5 +4,14 @@
   flex-direction: column;
 }
 
-.jobs-container-header {
+.jobs-container-link {
+  color: #f7f7f7;
+  margin: 0.75rem;
+  text-decoration: none;
+}
+
+.job-container-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
 }
