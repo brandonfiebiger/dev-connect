@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SavedCard from '../SavedCard/SavedCard';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { removeJob } from '../../actions';
 
@@ -34,6 +35,9 @@ export class SavedJobs extends Component {
     return (
       <div>
         <h1>Saved Jobs</h1>
+        <NavLink className="jobs-container-link" to="/">
+          Home
+        </NavLink>
         {savedCards}
       </div>
     );
