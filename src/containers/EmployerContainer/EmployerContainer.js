@@ -13,7 +13,6 @@ export class EmployerContainer extends Component {
       company: '',
       location: '',
       salary: 0,
-      toggleRender: false
     };
   }
 
@@ -29,9 +28,7 @@ export class EmployerContainer extends Component {
       const foundType = this.props.jobTypes.find(
         type => type.job_title === selectValue
       );
-      this.setState({ toggleRender: false, jobType: foundType });
-    } else {
-      this.setState({ jobTitle: selectValue, toggleRender: true });
+      this.setState({ jobType: foundType });
     }
   };
 
@@ -42,6 +39,7 @@ export class EmployerContainer extends Component {
 
   postJob = (state, event) => {
     event.preventDefault();
+    let placholderId;
     const {
       jobType,
       jobTitle,
@@ -63,6 +61,7 @@ export class EmployerContainer extends Component {
       })
         .then(response => response.json())
         .then(id => {
+          jobType.id = id.id;
           this.props.addJobType({
             job_title: jobTitle,
             average_salary: salary,
@@ -77,7 +76,8 @@ export class EmployerContainer extends Component {
           description,
           company,
           location,
-          status: 'none'
+          status: 'none',
+          job_title_id: jobType.id
         }),
         headers: {
           'Content-Type': 'application/json'
@@ -90,7 +90,8 @@ export class EmployerContainer extends Component {
             company,
             description,
             location,
-            status: 'none'
+            status: 'none',
+            job_title_id: jobType.id
           });
         })
         .catch(error => console.log(error));
@@ -124,7 +125,6 @@ export class EmployerContainer extends Component {
   };
 
   render() {
-    const { toggleRender } = this.state;
     const titleInput = document.querySelector('.employer-input');
 
     return (
@@ -147,14 +147,12 @@ export class EmployerContainer extends Component {
               <option>Add New Job Title +</option>
             </select>
           </div>
-          {(toggleRender || titleInput) && (
             <input
               className="employer-input"
               name="jobTitle"
               placeholder="Job Title"
               onChange={this.handleChange}
             />
-          )}
           <input
             className="employer-input"
             name="company"
@@ -167,7 +165,6 @@ export class EmployerContainer extends Component {
             placeholder="Location"
             onChange={this.handleChange}
           />
-          {(toggleRender || titleInput) && (
             <input
               type="number"
               className="employer-input"
@@ -175,7 +172,6 @@ export class EmployerContainer extends Component {
               placeholder="Salary"
               onChange={this.handleChange}
             />
-          )}
           <input
             className="employer-input description"
             name="description"
