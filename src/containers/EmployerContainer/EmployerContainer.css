@@ -1,5 +1,7 @@
 select {
-  width: 350px; }
+  width: 350px;
+  height: 2rem;
+  cursor: pointer; }
 
 .employer-form {
   display: flex;
@@ -55,10 +57,4 @@ input {
 
 .description {
   height: 75px;
-  padding-left: .5rem; }
-
-select {
-  height: 2rem;
-  width: 16rem;
-  cursor: pointer; }
-
+  padding-left: 0.5rem; }
