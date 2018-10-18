@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addNewJobType, addNewJob } from '../../actions';
 import './EmployerContainer.css';
-import { postNewJobType, postNewJobWithNewJobType } from '../../utils/apiCalls';
+import { postNewJobType, postNewJobWithNewJobType, postNewJob } from '../../utils/apiCalls';
 
 export class EmployerContainer extends Component {
   constructor() {
@@ -40,7 +40,6 @@ export class EmployerContainer extends Component {
 
   postJob = async (state, event) => {
     event.preventDefault();
-    let placholderId;
     const {
       jobType,
       jobTitle,
@@ -69,31 +68,16 @@ export class EmployerContainer extends Component {
         job_title_id: jobType.id
       });
     } else {
-      fetch(process.env.REACT_APP_DATABASE_API_URL + '/api/v1/jobs', {
-        method: 'POST',
-        body: JSON.stringify({
-          description,
-          company,
-          location,
-          status: 'none',
-          job_title_id: jobType.id
-        }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-        .then(response => response.json())
-        .then(id => {
-          this.props.addJob({
-            id: id.id,
-            company,
-            description,
-            location,
-            status: 'none',
-            job_title_id: jobType.id
-          });
-        })
-        .catch(error => console.log(error));
+      const newId = await postNewJob(this.state)
+
+      this.props.addJob({
+        id: newId,
+        company,
+        description,
+        location,
+        status: 'none',
+        job_title_id: jobType.id
+      });
     }
   };
 
