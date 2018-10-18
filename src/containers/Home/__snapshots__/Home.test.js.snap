@@ -1,0 +1,399 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home should match the snapshot 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Home />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <header
+          className="homepage-header"
+        >
+          <h1
+            className="dev-connect-header"
+          >
+            DevConnect
+          </h1>
+        </header>,
+        <div
+          className="button-container"
+        >
+          <button
+            className="homepage-button"
+          >
+            <NavLink
+              activeClassName="active"
+              aria-current="page"
+              className="job-seeker-link"
+              to="/job-seeker"
+            >
+              For Job Seekers
+            </NavLink>
+          </button>
+          <button
+            className="homepage-button"
+          >
+            <NavLink
+              activeClassName="active"
+              aria-current="page"
+              className="employer-link"
+              to="/employer"
+            >
+              For Employers
+            </NavLink>
+          </button>
+        </div>,
+      ],
+      "className": "homepage-container",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <h1
+            className="dev-connect-header"
+          >
+            DevConnect
+          </h1>,
+          "className": "homepage-header",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "DevConnect",
+            "className": "dev-connect-header",
+          },
+          "ref": null,
+          "rendered": "DevConnect",
+          "type": "h1",
+        },
+        "type": "header",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <button
+              className="homepage-button"
+            >
+              <NavLink
+                activeClassName="active"
+                aria-current="page"
+                className="job-seeker-link"
+                to="/job-seeker"
+              >
+                For Job Seekers
+              </NavLink>
+            </button>,
+            <button
+              className="homepage-button"
+            >
+              <NavLink
+                activeClassName="active"
+                aria-current="page"
+                className="employer-link"
+                to="/employer"
+              >
+                For Employers
+              </NavLink>
+            </button>,
+          ],
+          "className": "button-container",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <NavLink
+                activeClassName="active"
+                aria-current="page"
+                className="job-seeker-link"
+                to="/job-seeker"
+              >
+                For Job Seekers
+              </NavLink>,
+              "className": "homepage-button",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "activeClassName": "active",
+                "aria-current": "page",
+                "children": "For Job Seekers",
+                "className": "job-seeker-link",
+                "to": "/job-seeker",
+              },
+              "ref": null,
+              "rendered": "For Job Seekers",
+              "type": [Function],
+            },
+            "type": "button",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <NavLink
+                activeClassName="active"
+                aria-current="page"
+                className="employer-link"
+                to="/employer"
+              >
+                For Employers
+              </NavLink>,
+              "className": "homepage-button",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "activeClassName": "active",
+                "aria-current": "page",
+                "children": "For Employers",
+                "className": "employer-link",
+                "to": "/employer",
+              },
+              "ref": null,
+              "rendered": "For Employers",
+              "type": [Function],
+            },
+            "type": "button",
+          },
+        ],
+        "type": "div",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <header
+            className="homepage-header"
+          >
+            <h1
+              className="dev-connect-header"
+            >
+              DevConnect
+            </h1>
+          </header>,
+          <div
+            className="button-container"
+          >
+            <button
+              className="homepage-button"
+            >
+              <NavLink
+                activeClassName="active"
+                aria-current="page"
+                className="job-seeker-link"
+                to="/job-seeker"
+              >
+                For Job Seekers
+              </NavLink>
+            </button>
+            <button
+              className="homepage-button"
+            >
+              <NavLink
+                activeClassName="active"
+                aria-current="page"
+                className="employer-link"
+                to="/employer"
+              >
+                For Employers
+              </NavLink>
+            </button>
+          </div>,
+        ],
+        "className": "homepage-container",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <h1
+              className="dev-connect-header"
+            >
+              DevConnect
+            </h1>,
+            "className": "homepage-header",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "DevConnect",
+              "className": "dev-connect-header",
+            },
+            "ref": null,
+            "rendered": "DevConnect",
+            "type": "h1",
+          },
+          "type": "header",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <button
+                className="homepage-button"
+              >
+                <NavLink
+                  activeClassName="active"
+                  aria-current="page"
+                  className="job-seeker-link"
+                  to="/job-seeker"
+                >
+                  For Job Seekers
+                </NavLink>
+              </button>,
+              <button
+                className="homepage-button"
+              >
+                <NavLink
+                  activeClassName="active"
+                  aria-current="page"
+                  className="employer-link"
+                  to="/employer"
+                >
+                  For Employers
+                </NavLink>
+              </button>,
+            ],
+            "className": "button-container",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <NavLink
+                  activeClassName="active"
+                  aria-current="page"
+                  className="job-seeker-link"
+                  to="/job-seeker"
+                >
+                  For Job Seekers
+                </NavLink>,
+                "className": "homepage-button",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "activeClassName": "active",
+                  "aria-current": "page",
+                  "children": "For Job Seekers",
+                  "className": "job-seeker-link",
+                  "to": "/job-seeker",
+                },
+                "ref": null,
+                "rendered": "For Job Seekers",
+                "type": [Function],
+              },
+              "type": "button",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <NavLink
+                  activeClassName="active"
+                  aria-current="page"
+                  className="employer-link"
+                  to="/employer"
+                >
+                  For Employers
+                </NavLink>,
+                "className": "homepage-button",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "activeClassName": "active",
+                  "aria-current": "page",
+                  "children": "For Employers",
+                  "className": "employer-link",
+                  "to": "/employer",
+                },
+                "ref": null,
+                "rendered": "For Employers",
+                "type": [Function],
+              },
+              "type": "button",
+            },
+          ],
+          "type": "div",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;
