@@ -129,12 +129,12 @@ export class EmployerContainer extends Component {
               placeholder="Salary"
               onChange={this.handleChange}
             />
-          <input
-            className="employer-input description"
+          <textarea 
+            className="employer-input description" 
             name="description"
             placeholder="Job Description"
             onChange={this.handleChange}
-          />
+            ></textarea>
           <button className="add-job-button">Add Job</button>
         </form>
       </div>
