@@ -58,7 +58,12 @@ export class JobCard extends Component {
         <h4>{jobType}</h4>
         <p>{newLocations.join(' ')}</p>
         <p>{description}</p>
-        <button onClick={this.updateJobSaveStatus}>Save Job</button>
+        <button
+          className="update-status-button"
+          onClick={this.updateJobSaveStatus}
+        >
+          Save Job
+        </button>
       </div>
     );
   }

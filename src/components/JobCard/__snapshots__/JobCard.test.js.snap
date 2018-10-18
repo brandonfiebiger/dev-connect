@@ -8,6 +8,8 @@ ShallowWrapper {
     description="We are looking for a talented developer"
     jobType="UX Designer"
     location="Denver, CO"
+    removeJob={[MockFunction]}
+    saveJob={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -36,6 +38,7 @@ ShallowWrapper {
           We are looking for a talented developer
         </p>,
         <button
+          className="update-status-button"
           onClick={[Function]}
         >
           Save Job
@@ -95,6 +98,7 @@ ShallowWrapper {
         "nodeType": "host",
         "props": Object {
           "children": "Save Job",
+          "className": "update-status-button",
           "onClick": [Function],
         },
         "ref": null,
@@ -124,6 +128,7 @@ ShallowWrapper {
             We are looking for a talented developer
           </p>,
           <button
+            className="update-status-button"
             onClick={[Function]}
           >
             Save Job
@@ -183,6 +188,7 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": "Save Job",
+            "className": "update-status-button",
             "onClick": [Function],
           },
           "ref": null,
