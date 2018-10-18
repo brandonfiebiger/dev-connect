@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addNewJobType, addNewJob } from '../../actions';
 import './EmployerContainer.css';
+import { postNewJobType } from '../../utils/apiCalls';
 
 export class EmployerContainer extends Component {
   constructor() {
@@ -37,7 +38,7 @@ export class EmployerContainer extends Component {
     this.setState({ [name]: value });
   };
 
-  postJob = (state, event) => {
+  postJob = async (state, event) => {
     event.preventDefault();
     let placholderId;
     const {
@@ -49,26 +50,7 @@ export class EmployerContainer extends Component {
       description
     } = this.state;
     if (!Object.keys(jobType).length && jobTitle) {
-      fetch(process.env.REACT_APP_DATABASE_API_URL + '/api/v1/job-types', {
-        method: 'POST',
-        body: JSON.stringify({
-          job_title: jobTitle,
-          average_salary: salary
-        }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-        .then(response => response.json())
-        .then(id => {
-          jobType.id = id.id;
-          this.props.addJobType({
-            job_title: jobTitle,
-            average_salary: salary,
-            id: id.id
-          });
-        })
-        .catch(error => console.log(error.error));
+      const jobTypeId = await postNewJobType(this.state)
 
       fetch(process.env.REACT_APP_DATABASE_API_URL + '/api/v1/jobs', {
         method: 'POST',
