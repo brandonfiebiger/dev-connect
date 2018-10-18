@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addNewJobType, addNewJob } from '../../actions';
 import './EmployerContainer.css';
+import { postNewJobType, postNewJobWithNewJobType, postNewJob } from '../../utils/apiCalls';
 
 export class EmployerContainer extends Component {
   constructor() {
@@ -13,7 +14,6 @@ export class EmployerContainer extends Component {
       company: '',
       location: '',
       salary: 0,
-      toggleRender: false
     };
   }
 
@@ -29,9 +29,7 @@ export class EmployerContainer extends Component {
       const foundType = this.props.jobTypes.find(
         type => type.job_title === selectValue
       );
-      this.setState({ toggleRender: false, jobType: foundType });
-    } else {
-      this.setState({ jobTitle: selectValue, toggleRender: true });
+      this.setState({ jobType: foundType });
     }
   };
 
@@ -40,7 +38,7 @@ export class EmployerContainer extends Component {
     this.setState({ [name]: value });
   };
 
-  postJob = (state, event) => {
+  postJob = async (state, event) => {
     event.preventDefault();
     const {
       jobType,
@@ -51,80 +49,39 @@ export class EmployerContainer extends Component {
       description
     } = this.state;
     if (!Object.keys(jobType).length && jobTitle) {
-      fetch(process.env.REACT_APP_DATABASE_API_URL + '/api/v1/job-types', {
-        method: 'POST',
-        body: JSON.stringify({
-          job_title: jobTitle,
-          average_salary: salary
-        }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-        .then(response => response.json())
-        .then(id => {
-          this.props.addJobType({
-            job_title: jobTitle,
-            average_salary: salary,
-            id: id.id
-          });
-        })
-        .catch(error => console.log(error.error));
+      const jobTypeId = await postNewJobType(this.state)
+      
+      this.props.addJobType({
+        job_title: jobTitle,
+        average_salary: salary,
+        id: jobTypeId
+      });
 
-      fetch(process.env.REACT_APP_DATABASE_API_URL + '/api/v1/jobs', {
-        method: 'POST',
-        body: JSON.stringify({
-          description,
-          company,
-          location,
-          status: 'none'
-        }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-        .then(response => response.json())
-        .then(id => {
-          this.props.addJob({
-            id: id.id,
-            company,
-            description,
-            location,
-            status: 'none'
-          });
-        })
-        .catch(error => console.log(error));
+      const jobId = await postNewJobWithNewJobType(this.state, jobTypeId);
+
+      this.props.addJob({
+        id: jobId,
+        company,
+        description,
+        location,
+        status: 'none',
+        job_title_id: jobType.id
+      });
     } else {
-      fetch(process.env.REACT_APP_DATABASE_API_URL + '/api/v1/jobs', {
-        method: 'POST',
-        body: JSON.stringify({
-          description,
-          company,
-          location,
-          status: 'none',
-          job_title_id: jobType.id
-        }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-        .then(response => response.json())
-        .then(id => {
-          this.props.addJob({
-            id: id.id,
-            company,
-            description,
-            location,
-            status: 'none',
-            job_title_id: jobType.id
-          });
-        })
-        .catch(error => console.log(error));
+      const newId = await postNewJob(this.state)
+
+      this.props.addJob({
+        id: newId,
+        company,
+        description,
+        location,
+        status: 'none',
+        job_title_id: jobType.id
+      });
     }
   };
 
   render() {
-    const { toggleRender } = this.state;
     const titleInput = document.querySelector('.employer-input');
 
     return (
@@ -147,14 +104,12 @@ export class EmployerContainer extends Component {
               <option>Add New Job Title +</option>
             </select>
           </div>
-          {(toggleRender || titleInput) && (
             <input
               className="employer-input"
               name="jobTitle"
               placeholder="Job Title"
               onChange={this.handleChange}
             />
-          )}
           <input
             className="employer-input"
             name="company"
@@ -167,7 +122,6 @@ export class EmployerContainer extends Component {
             placeholder="Location"
             onChange={this.handleChange}
           />
-          {(toggleRender || titleInput) && (
             <input
               type="number"
               className="employer-input"
@@ -175,7 +129,6 @@ export class EmployerContainer extends Component {
               placeholder="Salary"
               onChange={this.handleChange}
             />
-          )}
           <input
             className="employer-input description"
             name="description"
