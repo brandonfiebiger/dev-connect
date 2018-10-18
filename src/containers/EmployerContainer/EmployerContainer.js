@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addNewJobType, addNewJob } from '../../actions';
+import { NavLink } from 'react-router-dom';
 import './EmployerContainer.css';
 import { postNewJobType, postNewJobWithNewJobType, postNewJob } from '../../utils/apiCalls';
 
@@ -85,7 +86,7 @@ export class EmployerContainer extends Component {
     const titleInput = document.querySelector('.employer-input');
 
     return (
-      <div>
+      <div className="employer-container">
         <h1>Employers</h1>
         <form
           className="employer-form"

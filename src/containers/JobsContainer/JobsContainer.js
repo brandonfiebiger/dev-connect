@@ -32,8 +32,13 @@ export class JobsContainer extends React.Component {
     return (
       <div className="jobs-container">
         <header className="jobs-container-header">
-          <h1>Job Seekers</h1>
-          <NavLink to="/saved">Saved Jobs</NavLink>
+          <h1>Developers</h1>
+          <NavLink className="jobs-container-link" to="/saved">
+            Saved Jobs
+          </NavLink>
+          <NavLink className="jobs-container-link" to="/">
+            Home
+          </NavLink>
         </header>
         <div>{jobCards}</div>
       </div>
