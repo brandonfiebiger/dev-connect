@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { JobCard, mapDispatchToProps } from './JobCard';
+import { JobCard, mapDispatchToProps, mapStateToProps } from './JobCard';
 
 describe('JobCard', () => {
   let wrapper;
@@ -87,7 +87,51 @@ describe('JobCard', () => {
     expect(wrapper.props().removeJob).toHaveBeenCalledWith(mockId);
   });
 
-  //   const result = await wrapper.instance().addFavoriteData(mockMovie);
+  describe('mapDispatchToProps', () => {
+    it('should call dispatch when using saveJob from mapDispatchToProps', () => {
+      let mockId = 52;
 
-  // expect(wrapper.props().deleteMovie).toHaveBeenCalledWith(mockMovie);
+      wrapper = mount(
+        <JobCard
+          description={mockDescription}
+          company={mockCompany}
+          location={mockLocation}
+          jobType={mockType}
+          saveJob={jest.fn()}
+          removeJob={jest.fn()}
+          id={mockId}
+          updateJobSaveStatus={mockUpdateJob}
+          savedJobs={[]}
+        />
+      );
+      const mockDispatch = jest.fn();
+
+      const mappedProps = mapDispatchToProps(mockDispatch);
+      mappedProps.saveJob(mockId);
+      expect(mockDispatch).toHaveBeenCalled();
+    });
+
+    it('should call dispatch when using removeJob from mapDispatchToProps', () => {
+      let mockId = 52;
+
+      wrapper = mount(
+        <JobCard
+          description={mockDescription}
+          company={mockCompany}
+          location={mockLocation}
+          jobType={mockType}
+          saveJob={jest.fn()}
+          removeJob={jest.fn()}
+          id={mockId}
+          updateJobSaveStatus={mockUpdateJob}
+          savedJobs={[52]}
+        />
+      );
+      const mockDispatch = jest.fn();
+      const mappedProps = mapDispatchToProps(mockDispatch);
+
+      mappedProps.removeJob(mockId);
+      expect(mockDispatch).toHaveBeenCalled();
+    });
+  });
 });
