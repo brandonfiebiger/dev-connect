@@ -82,10 +82,30 @@ export const postNewJobType = async (state) => {
 
   const id = await response.json()
   return id.id
-    // .then(response => response.json())
-    // .then(id => {
-    //   return id.id
-    // })
-    // .catch(error => console.log(error.error));
-    // console.log(jobType.id);
+}
+
+export const postNewJobWithNewJobType = async (state, jobTypeId) => {
+  const {
+    jobType,
+    jobTitle,
+    company,
+    location,
+    salary,
+    description
+  } = state;
+  const response = await fetch(process.env.REACT_APP_DATABASE_API_URL + '/api/v1/jobs', {
+    method: 'POST',
+    body: JSON.stringify({
+      description,
+      company,
+      location,
+      status: 'none',
+      job_title_id: jobTypeId
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  const id = await response.json()
+  return id.id
 }
